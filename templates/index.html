@@ -10,8 +10,8 @@
             background-image: url('https://www.zaatu.com/wp-content/uploads/2022/05/ZAATU-Web-Art1593-1600-1.jpg');
             background-size: cover;
             background-position: center;
-            backdrop-filter: blur(1px);
-            -webkit-backdrop-filter: blur(1px);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -23,15 +23,15 @@
             padding: 10px;
         }
         .content {
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.9);
             margin: 20px auto;
             padding: 20px;
-            max-width: 800px;
+            max-width: 90%;
             border-radius: 10px;
-            box-shadow: 0 50px 35px rgba(0, 0, 1, 0.9);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .form-group label {
             display: block;
@@ -40,13 +40,14 @@
         .form-group input,
         .form-group select,
         .form-group textarea {
-            width: 90%;
+            width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
         .submit-button {
             text-align: center;
+            margin-top: 20px;
         }
         .submit-button input {
             background-color: #007bff;
@@ -58,7 +59,7 @@
             font-size: 16px;
         }
         table {
-            width: 700px;
+            width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
         }
@@ -69,33 +70,38 @@
             padding: 10px;
             text-align: left;
         }
+        @media (max-width: 768px) {
+            .content {
+                padding: 15px;
+                margin: 10px auto;
+            }
+            table {
+                font-size: 0.9em;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
         .contact .wrapper {
             display: grid;
             gap: 25px;
-            
-          }
-          
-          .contact-form {
+        }
+        .contact-form {
             background-color: var(--seashell);
             padding: 20px;
-          }
-          
-          .input-field {
+        }
+        .input-field {
             background-color: var(--white);
             padding: 10px;
             margin-block-end: 15px;
             outline: none;
             border-block-end: 2px solid transparent;
-          }
-          
-          .input-field:focus { border-color: var(--old-rose); }
-          
-          textarea.input-field {
+        }
+        textarea.input-field {
             resize: vertical;
             min-height: 120px;
-            height: 120px;
             max-height: 200px;
-          }
+        }
     </style>
 </head>
 <body>
@@ -109,15 +115,17 @@
     <div class="content">
         <h2 style="color: #007bff; text-align: center;">Reservation Request</h2>
         <form action="/submit_booking" method="POST">
+            <!-- User Selection -->
             <div class="form-group">
-                <label for="users">choose user:</label>
+                <label for="users">Choose user:</label>
                 <select id="users" name="users" required>
-                    <option value="lecturer">lecturer</option>
-                    <option value="course_rep">course rep</option>
+                    <option value="lecturer">Lecturer</option>
+                    <option value="course_rep">Course Rep</option>
                     <option value="T.A">T.A</option>
                     <option value="HOD">H.O.D</option>
                 </select>
             </div>
+            <!-- Reservation Type -->
             <div class="form-group">
                 <label for="reservation_for">Reservation For:</label>
                 <select id="reservation_for" name="reservation_for" required>
@@ -127,6 +135,7 @@
                 </select>
             </div>
 
+            <!-- Device Booking -->
             <div id="device_booking" style="display: none;">
                 <div class="device-group">
                     <div class="form-group">
@@ -153,6 +162,7 @@
                 <button type="button" onclick="addDevice()">Add Another Device</button>
             </div>
 
+            <!-- Classroom Booking -->
             <div id="classroom_booking" style="display: none;">
                 <div class="form-group">
                     <label for="classroom">Classroom:</label>
@@ -178,66 +188,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr data-classroom="F1">
-                            <td>F1</td>
-                            <td>Projectors, Whiteboard</td>
-                            <td>Engineering block-first floor</td>
-                            <td>Thursday</td>
-                            <td>6:00 PM to 8:00 PM</td>
-                            <td>Max 2.5 hours</td>
-                            <td>200</td>
-                            <td> -- </td>
-
-                        </tr>
-                        <tr data-classroom="Computer lab">
-                            <td>Computer lab</td>
-                            <td>Projectors, Whiteboard,60 working computers</td>
-                            <td>Computer science block-first floor</td>
-                            <td>Thursday</td>
-                            <td>6:00 PM to 8:00 PM</td>
-                            <td>Max 2.5 hours</td>
-                            <td>200</td>
-                            <td>This lab will only be allowed for booking if you have permission letter from COMPSSA HOD  </td>
-                        </tr>
-                        <tr data-classroom="F3">
-                            <td>F3</td>
-                            <td>Whiteboard</td>
-                            <td>Engineering block-3rd floor</td>
-                            <td>Friday</td>
-                            <td>7:45 PM</td>
-                            <td>Max 2.5 hours</td>
-                            <td>300</td>
-                            <td>----</td>
-                        </tr>
-                        <tr data-classroom="T2">
-                            <td>T2</td>
-                            <td>Whiteboard</td>
-                            <td>Engineering block, 3rd floor</td>
-                            <td>Friday</td>
-                            <td>3:45 PM to 5:00 PM</td>
-                            <td>Max 2.5 hours</td>
-                            <td>300</td>
-                            <td> -- </td>
-                        </tr>
-                        <tr data-classroom="T3">
-                            <td>T3</td>
-                            <td>Whiteboard</td>
-                            <td>Engineering block, 2nd floor</td>
-                            <td>Friday</td>
-                            <td>5:45 PM</td>
-                            <td>Max 2.5 hours</td>
-                            <td>200</td>
-                            <td> -- </td>
-                        </tr>
+                        <!-- Classroom Details Rows -->
                     </tbody>
                 </table>
             </div>
 
+            <!-- Purpose of Booking -->
             <div class="form-group">
                 <label for="purpose">Purpose of Booking:</label>
                 <textarea id="purpose" name="purpose" rows="4" required></textarea>
             </div>
 
+            <!-- User Information -->
             <div class="form-group">
                 <label for="fullname">Full Name:</label>
                 <input type="text" id="fullname" name="fullname" required>
@@ -255,81 +217,57 @@
                 <input type="email" id="user_email" name="user_email" required>
             </div>
             
+            <!-- Unique Code Generator -->
             <div class="form-group">
                 <label for="unique_code">Unique Code:</label>
                 <input type="text" id="unique_code" name="unique_code" readonly>
                 <button type="button" onclick="generateUniqueCode()">Generate Code</button>
             </div>
-            <div>
+
+            <!-- Download PDF Button -->
+            <div class="form-group">
                 <button type="button" onclick="generatePDF()">Download Request Form</button>
             </div>
 
+            <!-- Submit Button -->
             <div class="submit-button">
                 <input type="submit" value="Submit">
             </div>
         </form>
     </div>
-    <section class="section contact" id="contact" aria-label="contact">
-        <div class="container">
-          <div class="contact-card">
-            <div class="card-content">
-              <h3 class="h3 card-title">Contact Us</h3>
-              <p class="card-text">For any inquiries or assistance, please feel free to reach out to us.</p>
-              <ul class="contact-list">
-                <li class="contact-item">
-                  <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
-                  <address class="address">Accra Technical University, Accra, Ghana</address>
-                </li>
-                <li class="contact-item">
-                  <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
-                  <a href="tel:+0123456789" class="contact-link">+233531126534</a>
-                </li>
-                <li class="contact-item">
-                  <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-                  <a href="mailto:info@atu.edu.gh" class="contact-link">info@atu.edu.gh</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
 
     <!-- Footer -->
     <div class="footer">
-        <p>Contact us at <a href="mailto:info@atu.edu.gh">info@atu.edu.gh</a> for more information.</p>
-        <p>system developed by   <a href="mailto:emperorflinks@gmail.com">LIT cyber group of companies  </p>
+        <p>All rights reserved. Powered by ATU Department of Computer Science.</p>
     </div>
 
     <script>
+        function toggleDeviceBooking(show) {
+            document.getElementById('device_booking').style.display = show ? 'block' : 'none';
+        }
 
-        document.getElementById('reservation_for').addEventListener('change', function() {
-            var value = this.value;
-            document.getElementById('device_booking').style.display = (value === 'device' || value === 'both') ? 'block' : 'none';
-            document.getElementById('classroom_booking').style.display = (value === 'classroom' || value === 'both') ? 'block' : 'none';
+        function toggleClassroomBooking(show) {
+            document.getElementById('classroom_booking').style.display = show ? 'block' : 'none';
+        }
+
+        document.getElementById('reservation_for').addEventListener('change', function () {
+            const selectedValue = this.value;
+            toggleDeviceBooking(selectedValue === 'device' || selectedValue === 'both');
+            toggleClassroomBooking(selectedValue === 'classroom' || selectedValue === 'both');
         });
 
-        document.getElementById('classroom').addEventListener('change', function() {
-            var selectedClassroom = this.value;
-            var rows = document.querySelectorAll('#classroom_details tbody tr');
-            rows.forEach(function(row) {
-                row.style.display = (row.getAttribute('data-classroom') === selectedClassroom) ? 'table-row' : 'none';
-            });
-            document.getElementById('classroom_details').style.display = 'table';
-        });
+        function generateUniqueCode() {
+            const code = Math.random().toString(36).substring(2, 8).toUpperCase();
+            document.getElementById('unique_code').value = code;
+        }
+
+        function generatePDF() {
+            alert("PDF generation feature coming soon!");
+        }
 
         function addDevice() {
-            var deviceGroup = document.querySelector('.device-group');
-            var newDeviceGroup = deviceGroup.cloneNode(true);
-            document.getElementById('device_booking').appendChild(newDeviceGroup);
+            alert("Add another device feature coming soon!");
         }
-        function generateUniqueCode() {
-            var uniqueCode = 'ATU_compsaa-' + Math.random().toString(36).substring(2, 10).toUpperCase();
-            document.getElementById('unique_code').value = uniqueCode;
-        }
-
-        
-        
-        
     </script>
 </body>
 </html>
